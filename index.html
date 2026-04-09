@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Finesse Hub</title>
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: LatoWeb, 'Lato', Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: rgb(56, 56, 56);
+  background: #fff;
+  min-height: 100vh;
+}
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+ul { list-style: none; }
+
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 64px;
+  z-index: 1000;
+}
+.SiteHeader {
+  background: rgb(6, 56, 83);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+}
+.SiteHeader__logo {
+  display: flex;
+  align-items: center;
+}
+.SiteHeader__logoLink img {
+  width: 31px;
+  height: 32px;
+  display: block;
+}
+.SiteHeader__nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.SiteHeader__navItem {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0 24px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  border-radius: 32px;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.SiteHeader__navItem:hover { background: rgba(255,255,255,0.1); }
+.SiteHeader__menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.SiteHeader__iconBtn {
+  background: none;
+  border: none;
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  color: rgb(255,255,255);
+}
+.SiteHeader__iconBtn svg {
+  width: 22px; height: 22px;
+  fill: none;
+  stroke: white;
+  stroke-width: 1.8;
+}
+.SiteHeader__iconBtn--bell svg {
+  width: 20px; height: 20px;
+}
+.HeaderNotification__unread {
+  background: rgb(240, 57, 17);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px; right: 2px;
+}
+.HeaderUser {
+  background: rgb(214, 220, 234);
+  color: rgb(56, 56, 56);
+  border-radius: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  width: 24px; height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+/* ===== PAGE LAYOUT ===== */
+.page-wrapper {
+  display: flex;
+  padding-top: 64px;
+  min-height: 100vh;
+  background: #fff;
+}
+
+/* ===== LEFT SIDEBAR ===== */
+.sidebar-col {
+  position: fixed;
+  top: 64px; left: 0;
+  width: 312px;
+  height: calc(100vh - 64px);
+  background: rgb(244, 247, 254);
+  overflow-y: auto;
+  z-index: 100;
+}
+.HomeSidebar {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 64px);
+}
+.HomeSidebar__main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Featured Content Card */
+.CardStack {
+  margin-bottom: 20px;
+}
+.CardStack__wrapper {
+  position: relative;
+}
+.CardStack__card {
+  background: white;
+  border-radius: 16px;
+  width: 248px;
+  height: 330px;
+  overflow: visible;
+  position: relative;
+}
+.CardStack__cardContent {
+  overflow: hidden;
+  border-radius: 16px;
+  height: 328px;
+  width: 100%;
+}
+.FeaturedContentCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 16px 40px;
+  border-radius: 16px;
+  height: 100%;
+  color: white;
+  background-image: url("https://cms.financialfinesse.com/rafpress/media/9ba72b0b-72f5-4030-8451-c058e0f86a2a/featured-content-backdrop-35892.png");
+  background-size: cover;
+  background-position: center;
+}
+.FeaturedContentCard__status {
+  display: inline-block;
+  background: rgb(6, 56, 83);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 32px;
+  align-self: flex-start;
+  letter-spacing: 0.3px;
+}
+.FeaturedContentCard__title {
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.28;
+}
+.CardStack__nav {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  color: white;
+}
+.CardStack__navBtn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.85);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+.CardStack__navBtn:hover { color: white; }
+.CardStack__counter {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+}
+.CardStack__stackUnderlay {
+  background: rgb(244, 247, 254);
+  border: 1px solid rgb(214, 220, 234);
+  border-radius: 16px;
+  position: absolute;
+  bottom: -8px;
+  left: 14px; right: 14px;
+  height: 20px;
+  z-index: -1;
+}
+
+/* Your Progress Accordion */
+.YourProgress {
+  margin-bottom: 32px;
+}
+.YourProgress__accordion {
+  background: white;
+  border: 1px solid rgb(214, 220, 234);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.YourProgress__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  cursor: pointer;
+  width: 100%;
+  background: none;
+  border: none;
+}
+.YourProgress__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.YourProgress__title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgb(56, 56, 56);
+}
+.YourProgress__level {
+  background: rgb(6, 56, 83);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 32px;
+  letter-spacing: 0.3px;
+}
+.YourProgress__chevron {
+  color: rgba(0,0,0,0.54);
+  display: flex;
+  align-items: center;
+}
+.YourProgress__chevron svg {
+  width: 20px; height: 20px;
+  fill: rgba(0,0,0,0.54);
+  stroke: none;
+}
+
+/* Contact Sidebar */
+.ContactSidebar {
+  display: block;
+}
+.ContactSidebar__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+.ContactSidebar__coaches {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 0;
+}
+.ContactSidebar__coach {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid rgb(244, 247, 254);
+  flex-shrink: 0;
+}
+.ContactSidebar__coach:not(:first-child) {
+  margin-left: -10px;
+}
+.ContactSidebar__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(56, 56, 56);
+  margin-bottom: 8px;
+  display: block;
+  text-align: center;
+  margin-top: 0;
+}
+.ContactSidebar__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ContactSidebar__action--primary {
+  background: rgb(6, 56, 83);
+  color: white;
+  border: 1px solid rgb(6, 56, 83);
+  border-radius: 32px;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ContactSidebar__action--primary:hover { background: rgb(4, 44, 66); }
+.ContactSidebar__action--primary svg {
+  width: 18px; height: 18px;
+  fill: white;
+}
+.ContactSidebar__footer {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 13px;
+  color: rgb(100, 100, 110);
+  line-height: 1.45;
+}
+
+/* ===== CENTER CONTENT ===== */
+.content-col {
+  margin-left: 312px;
+  margin-right: 390px;
+  padding: 32px 32px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Action Plan */
+.Home__actionPlan {
+  margin-bottom: 32px;
+}
+.Home__actionPlanHeader {
+  margin-bottom: 16px;
+}
+.Home__actionPlanTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: rgb(56, 56, 56);
+}
+.Home__actionItems {
+  padding: 24px;
+  border-radius: 16px;
+  background:
+    linear-gradient(rgb(255,255,255), rgb(255,255,255)) padding-box,
+    linear-gradient(270deg, rgb(61,123,169) 0%, rgb(6,56,83) 100%) border-box;
+  border: 2px solid transparent;
+}
+.Home__actionItemsTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(56, 56, 56);
+  margin-bottom: 8px;
+}
+.ActionPlanActionItem {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.ActionPlanActionItem__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 10px 16px 10px;
+  border-bottom: 1px solid rgb(214, 220, 234);
+  gap: 8px;
+}
+.ActionPlanActionItem__container:last-child {
+  border-bottom: none;
+}
+.ActionPlanActionItem__title {
+  font-size: 16px;
+  color: rgb(56, 56, 56);
+  flex: 1;
+}
+.ActionPlanActionItem__chevron {
+  color: rgb(214, 220, 234);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.ActionPlanActionItem__chevron svg {
+  width: 16px; height: 16px;
+  stroke: rgb(180, 190, 210);
+  fill: none;
+  stroke-width: 2.5;
+}
+.ActionItems__showMore {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  background: rgb(244, 247, 254);
+  color: rgb(56, 56, 56);
+  border: 1px solid rgb(214, 220, 234);
+  border-radius: 32px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: center;
+}
+.ActionItems__showMore:hover { background: rgb(235, 240, 250); }
+
+/* Curated Content */
+.ContentRow__title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.28px;
+  text-transform: uppercase;
+  color: rgb(56, 56, 56);
+  margin-bottom: 16px;
+  display: block;
+}
+.HorizontalScroller {
+  position: relative;
+}
+.HorizontalScroller__container {
+  overflow-x: scroll;
+  overflow-y: visible;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.HorizontalScroller__container::-webkit-scrollbar { display: none; }
+.ContentRow__content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: nowrap;
+  padding: 4px 32px 12px 0;
+  align-items: flex-start;
+}
+.HorizontalScroller__arrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 28px;
+  background: rgb(6, 56, 83);
+  border-radius: 8px 0 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  border: none;
+  color: white;
+}
+.HorizontalScroller__arrow svg {
+  width: 16px; height: 16px;
+  stroke: white;
+  fill: none;
+  stroke-width: 2.5;
+}
+
+/* Content Cards */
+.ContentCard {
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  width: 280px;
+  height: 260px;
+  background: white;
+  border: 1px solid rgb(214, 220, 234);
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.18s;
+}
+.ContentCard:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+}
+.ContentCard__bookmark {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 10;
+}
+.BookmarkButton {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px;
+  width: 32px; height: 32px;
+}
+.BookmarkButton svg {
+  width: 22px; height: 22px;
+  stroke: rgb(214, 220, 234);
+  fill: rgb(214, 220, 234);
+  stroke-width: 1.5;
+}
+.ContentCard__imageContainer {
+  height: 140px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: block;
+}
+.ContentCard__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(56, 56, 56);
+  line-height: 1.4;
+  margin: 16px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ContentCard__type {
+  padding: 0 16px 16px;
+}
+.ContentTypeTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 32px;
+}
+.ContentTypeTag--articles {
+  background: rgb(255, 245, 214);
+  color: rgb(56, 56, 56);
+}
+.ContentTypeTag--calculators {
+  background: rgba(139, 195, 95, 0.2);
+  color: rgb(56, 56, 56);
+}
+.ContentTypeTag svg {
+  width: 13px; height: 13px;
+  fill: rgb(120, 100, 60);
+  stroke: none;
+  flex-shrink: 0;
+}
+.ContentTypeTag--calculators svg {
+  fill: rgb(80, 130, 50);
+}
+
+/* ===== RIGHT CHAT PANEL ===== */
+.chat-col {
+  position: fixed;
+  top: 64px; right: 0;
+  width: 390px;
+  height: calc(100vh - 64px);
+  background: white;
+  border-left: 1px solid rgb(214, 220, 234);
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  overflow: hidden;
+}
+/* Chat Header */
+.chatWindowHeader {
+  background: white;
+  border-bottom: 1px solid rgb(214, 220, 234);
+  padding: 0 16px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: relative;
+}
+.chatWindowHeader__menuBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  padding: 0;
+  flex-shrink: 0;
+}
+.chatWindowHeader__menuBtn svg {
+  width: 20px; height: 20px;
+  stroke: rgb(56, 56, 56);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.chatWindowHeader__brandContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.chatWindowHeader__brand {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.chatWindowHeader__brandName {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(28, 27, 31);
+}
+.chatWindowHeader__brandBadge {
+  background: #007CAB;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+}
+.chatWindowHeader__actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.chatWindowHeader__actionBtn {
+  background: rgb(217, 217, 217);
+  border: none;
+  width: 22px; height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.chatWindowHeader__actionBtn:hover { background: rgb(195, 200, 215); }
+.chatWindowHeader__actionBtn svg {
+  width: 12px; height: 12px;
+  stroke: rgb(28, 27, 31);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* Chat Empty State */
+.chatWindow__content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.chatWindow__emptyState {
+  text-align: center;
+  padding: 24px 32px;
+}
+.chatWindow__greeting {
+  font-size: 20px;
+  font-weight: 700;
+  color: #007CAB;
+  margin-bottom: 4px;
+}
+.chatWindow__greetingSub {
+  font-size: 20px;
+  font-weight: 700;
+  color: #007CAB;
+}
+/* Chat Input */
+.chatWindow__inputBar {
+  background: white;
+  padding: 12px 16px 16px;
+  flex-shrink: 0;
+}
+.chatWindow__inputWrapper {
+  background: white;
+  border: 1.5px solid rgb(214, 220, 234);
+  border-radius: 18px;
+  display: flex;
+  align-items: flex-end;
+  padding: 14px 14px 14px 18px;
+  gap: 10px;
+  min-height: 84px;
+}
+.chatWindow__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: inherit;
+  color: rgb(56, 56, 56);
+  background: none;
+  resize: none;
+  min-height: 22px;
+  line-height: 1.5;
+}
+.chatWindow__input::placeholder { color: rgb(56, 56, 56); }
+.chatWindow__sendButton {
+  background: rgb(214, 220, 234);
+  border: none;
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  align-self: flex-end;
+  transition: background 0.15s;
+}
+.chatWindow__sendButton:hover { background: #007CAB; }
+.chatWindow__sendButton:hover svg { stroke: white; }
+.chatWindow__sendButton svg {
+  width: 18px; height: 18px;
+  fill: none;
+  stroke: rgb(86, 86, 86);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.chatWindow__disclaimer {
+  font-size: 12px;
+  color: rgb(86, 86, 86);
+  padding: 8px 4px 0;
+  text-align: center;
+}
+
+/* ===== FLOATING FAB (Get Started) ===== */
+.rewardableActivitiesFABContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 450px;
+  z-index: 900;
+}
+.RewardableActivitiesFAB {
+  background: white;
+  border: 1px solid rgb(6, 56, 83);
+  border-radius: 24px;
+  padding: 8px 16px;
+  box-shadow: rgba(0,0,0,0.15) 0 2px 4px;
+  cursor: pointer;
+  width: 192px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.rewardableActivities__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rewardableActivities__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(56, 56, 56);
+}
+.rewardableActivities__count {
+  font-size: 12px;
+  color: rgb(146, 139, 159);
+}
+.rewardableActivities__progressTrack {
+  background: rgb(214, 220, 234);
+  height: 5px;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+}
+.rewardableActivities__progressFill {
+  background: rgb(136, 197, 44);
+  height: 100%;
+  border-radius: 4px;
+  width: 33%;
+}
+
+/* ===== FLOATING CHAT ICON BUTTON ===== */
+.FloatingChatButton {
+  position: fixed;
+  bottom: 20px; right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 900;
+  display: none;
+}
+.FloatingChatButton img {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* ===== RESTART TOUR BUTTON ===== */
+.RestartTourBtn {
+  position: fixed;
+  bottom: 24px; left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px 9px 12px;
+  background: #063853;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.22);
+  z-index: 800;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.01em;
+}
+.RestartTourBtn:hover { background: #0a5070; transform: translateY(-1px); }
+.RestartTourBtn:active { transform: translateY(0); }
+.RestartTourBtn__icon {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+}
+
+/* Chat panel closed state */
+.chat-col--hidden {
+  display: none !important;
+}
+.content-col--expanded {
+  margin-right: 0 !important;
+}
+.rewardableActivitiesFABContainer--expanded {
+  right: 20px !important;
+}
+
+/* ===== TOUR OVERLAY ===== */
+.tour-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+}
+
+/* SVG mask layer — darkens everything except the spotlight cutout */
+.tour-mask {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: all;
+}
+
+/* Invisible rect that catches clicks outside the spotlight to skip */
+.tour-backdrop-hit {
+  fill: transparent;
+  cursor: default;
+}
+
+/* The darkened region */
+.tour-mask-dark {
+  fill: rgba(0, 0, 0, 0.55);
+}
+
+/* The spotlight cutout hole */
+.tour-spotlight-hole {
+  fill: black; /* used as SVG mask — black = transparent in mask */
+}
+
+/* Animated highlight ring around the spotlight */
+.tour-spotlight-ring {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: inherit;
+  pointer-events: none;
+  animation: tour-pulse 1.8s ease-in-out infinite;
+}
+@keyframes tour-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+}
+
+/* Tooltip card */
+.tour-tooltip {
+  position: absolute;
+  width: 300px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px 20px 16px;
+  pointer-events: all;
+  animation: tour-tooltip-in 0.22s cubic-bezier(0.34,1.56,0.64,1) both;
+  z-index: 9010;
+}
+@keyframes tour-tooltip-in {
+  from { opacity: 0; transform: scale(0.92) translateY(6px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);   }
+}
+
+/* Arrow pointer on the tooltip */
+.tour-tooltip::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  transform: rotate(45deg);
+  box-shadow: -2px -2px 4px rgba(0,0,0,0.06);
+}
+.tour-tooltip[data-arrow="top"]::before    { top: -6px;    left: 24px; box-shadow: -2px -2px 4px rgba(0,0,0,0.08); }
+.tour-tooltip[data-arrow="bottom"]::before { bottom: -6px; left: 24px; box-shadow: 2px 2px 4px rgba(0,0,0,0.08);  }
+.tour-tooltip[data-arrow="left"]::before   { left: -6px;   top: 20px;  box-shadow: -2px 2px 4px rgba(0,0,0,0.08); }
+.tour-tooltip[data-arrow="right"]::before  { right: -6px;  top: 20px;  box-shadow: 2px -2px 4px rgba(0,0,0,0.08); }
+
+/* Tooltip header */
+.tour-tooltip__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.tour-tooltip__step {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgb(61, 123, 169);
+}
+.tour-tooltip__skip {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: rgb(160, 160, 175);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.tour-tooltip__skip:hover { color: rgb(80, 80, 95); }
+
+.tour-tooltip__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(28, 27, 31);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.tour-tooltip__body {
+  font-size: 14px;
+  color: rgb(86, 86, 100);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+/* Progress dots */
+.tour-tooltip__dots {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.tour-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(214, 220, 234);
+  transition: background 0.2s, transform 0.2s;
+}
+.tour-dot--active {
+  background: rgb(6, 56, 83);
+  transform: scale(1.3);
+}
+
+/* Controls */
+.tour-tooltip__controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.tour-btn-back {
+  background: none;
+  border: 1px solid rgb(214, 220, 234);
+  border-radius: 32px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(86, 86, 100);
+  cursor: pointer;
+  font-family: inherit;
+}
+.tour-btn-back:hover { background: rgb(244, 247, 254); }
+.tour-btn-next {
+  flex: 1;
+  background: rgb(6, 56, 83);
+  border: none;
+  border-radius: 32px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.tour-btn-next:hover { background: rgb(4, 44, 66); }
+.tour-btn-next--finish {
+  background: rgb(61, 123, 169);
+}
+.tour-btn-next--finish:hover { background: rgb(0, 80, 124); }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="SiteHeader">
+    <div class="SiteHeader__logo">
+      <a href="#" class="SiteHeader__logoLink">
+        <img src="https://cms.financialfinesse.com/rafpress/media/2021/03/ff-icon-white.svg" alt="Financial Finesse" />
+      </a>
+    </div>
+    <nav class="SiteHeader__nav">
+      <a href="#" class="SiteHeader__navItem" id="tour-action-plan-nav">Action Plan</a>
+      <a href="#" class="SiteHeader__navItem">Content</a>
+      <a href="#" class="SiteHeader__navItem">Events</a>
+      <a href="#" class="SiteHeader__navItem">Coaches</a>
+      <a href="#" class="SiteHeader__navItem">Life Events</a>
+    </nav>
+    <div class="SiteHeader__menu">
+      <!-- Bookmark -->
+      <button class="SiteHeader__iconBtn" aria-label="Saved">
+        <svg viewBox="0 0 24 24"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </button>
+      <!-- Chat bubble -->
+      <button class="SiteHeader__iconBtn" aria-label="Messages">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <!-- Help -->
+      <button class="SiteHeader__iconBtn" aria-label="Help">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-linecap="round" stroke-width="2.5"/></svg>
+      </button>
+      <!-- Notifications -->
+      <button class="SiteHeader__iconBtn SiteHeader__iconBtn--bell" aria-label="Notifications" style="position:relative;">
+        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="HeaderNotification__unread"></div>
+      </button>
+      <!-- User avatar -->
+      <div class="HeaderUser">BM</div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE BODY ===== -->
+<div class="page-wrapper">
+
+  <!-- LEFT SIDEBAR -->
+  <div class="sidebar-col">
+    <div class="HomeSidebar">
+      <div class="HomeSidebar__main">
+
+        <!-- Featured Content Card -->
+        <div class="CardStack">
+          <div class="CardStack__wrapper">
+            <div class="CardStack__card">
+              <div class="CardStack__cardContent">
+                <a href="#" class="FeaturedContentCard">
+                  <div class="FeaturedContentCard__status">FEATURED CONTENT</div>
+                  <div class="FeaturedContentCard__title">"Just Automate Everything" Is Good Advice...Up to a Point</div>
+                </a>
+              </div>
+              <div class="CardStack__nav">
+                <button class="CardStack__navBtn" aria-label="Previous">&#8249;</button>
+                <span class="CardStack__counter">1 / 2</span>
+                <button class="CardStack__navBtn" aria-label="Next">&#8250;</button>
+              </div>
+            </div>
+            <div class="CardStack__stackUnderlay"></div>
+          </div>
+        </div>
+
+        <!-- Your Progress -->
+        <div class="YourProgress">
+          <div class="YourProgress__accordion">
+            <button class="YourProgress__summary">
+              <div class="YourProgress__left">
+                <h3 class="YourProgress__title">YOUR PROGRESS</h3>
+              </div>
+              <div class="YourProgress__chevron">
+                <!-- Expand/chevron down icon -->
+                <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="rgba(0,0,0,0.54)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              </div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Connect With A Coach -->
+      <div class="ContactSidebar" id="tour-coach">
+        <div class="ContactSidebar__header">
+          <div class="ContactSidebar__coaches">
+            <div class="ContactSidebar__coach" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2018/03/Brian-Kelly-2018_crop_600x600.png');"></div>
+            <div class="ContactSidebar__coach" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2018/03/Erik-Carter-2018_crop_600x600.png');"></div>
+            <div class="ContactSidebar__coach" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2018/03/Cyrus-Purnell-2018_crop_600x600.png');"></div>
+            <div class="ContactSidebar__coach" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2018/03/Linda-Robertson-2018_crop_600x600.png');"></div>
+          </div>
+        </div>
+        <div class="ContactSidebar__title">Connect With A Coach</div>
+        <div class="ContactSidebar__actions">
+          <button class="ContactSidebar__action--primary">
+            <!-- Person icon -->
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Start a Conversation
+          </button>
+        </div>
+        <div class="ContactSidebar__footer">Live Financial Coaches are available: Monday to Friday, 9 am to 8 pm ET</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER CONTENT -->
+  <div class="content-col">
+
+    <!-- Action Plan Section -->
+    <div class="Home__actionPlan">
+      <div class="Home__actionPlanHeader">
+        <h1 class="Home__actionPlanTitle">Welcome back, Bri!</h1>
+      </div>
+      <div class="Home__actionItems" id="tour-priorities">
+        <h2 class="Home__actionItemsTitle">Here are your priorities, today</h2>
+        <div class="ActionItems">
+          <a href="#" class="ActionPlanActionItem">
+            <div class="ActionPlanActionItem__container">
+              <div class="ActionPlanActionItem__title">Take your financial wellness assessment</div>
+              <div class="ActionPlanActionItem__chevron">
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="ActionPlanActionItem" id="action-item-aimee">
+            <div class="ActionPlanActionItem__container" style="border-bottom: none;">
+              <div class="ActionPlanActionItem__title" id="action-item-aimee-title">Ask Aimee AI about your finances</div>
+              <div class="ActionPlanActionItem__chevron">
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+            </div>
+          </a>
+        </div>
+        <button class="ActionItems__showMore">See my action plan</button>
+      </div>
+    </div>
+
+    <!-- Curated Content -->
+    <div class="Home__content">
+      <div class="ContentRow">
+        <h2 class="ContentRow__title">CURATED FOR YOU</h2>
+        <div class="HorizontalScroller">
+          <div class="HorizontalScroller__container" id="cardScroller">
+            <div class="ContentRow__content">
+
+              <!-- Card 1 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2020/08/iStock-1063936626.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">Simple Steps That Could Cut Your Interest Rates in Half</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 2 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2020/08/iStock-1175414396-1.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">Student Loan Refinancing: When It Actually Makes Sense</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 3 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2020/12/re-balance-your-investments.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">How Often Should You Re-Balance Your Investments?</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 4 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2020/12/mature-woman-working-from-home.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">The Investment Strategy That Forces You to Buy Low and Sell High</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 5 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2020/04/iStock-626361926-e1633962144440.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">Top Ways To Diversify Your Investments</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 6 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2021/02/iStock-1129609347-e1614033335993.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">The Number One Reason People Fall into Credit Card Debt</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 7 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2020/08/iStock-1159334654-e1614035253740.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">The Financial Milestone Strategy That Keeps You Moving Forward</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 8 — Calculator -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2021/02/iStock-1265643930-e1614121489301.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">Saving For Goals</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--calculators">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><circle cx="8" cy="14" r="1"/><circle cx="12" cy="14" r="1"/><circle cx="16" cy="14" r="1"/><circle cx="8" cy="18" r="1"/><circle cx="12" cy="18" r="1"/><circle cx="16" cy="18" r="1"/></svg>
+                    Calculators
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 9 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2018/08/smiling-man-with-cup-of-coffee.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">How To Start Your Emergency Fund</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 10 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2020/08/iStock-1178735228-e1614033991135.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">Use these (Mostly) Painless Savings Tips to Transform Your Finances</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 11 — Calculator -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/f3e3f77c-263c-4efa-85d1-652fa4249505/PT-GettyImages-1956924237.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">Easy Spending Plan Calculator</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--calculators">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><circle cx="8" cy="14" r="1"/><circle cx="12" cy="14" r="1"/><circle cx="16" cy="14" r="1"/><circle cx="8" cy="18" r="1"/><circle cx="12" cy="18" r="1"/><circle cx="16" cy="18" r="1"/></svg>
+                    Calculators
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 12 — Calculator -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2021/02/iStock-1201494936-e1614123757490.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">Debt Blaster Calculator</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--calculators">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><circle cx="8" cy="14" r="1"/><circle cx="12" cy="14" r="1"/><circle cx="16" cy="14" r="1"/><circle cx="8" cy="18" r="1"/><circle cx="12" cy="18" r="1"/><circle cx="16" cy="18" r="1"/></svg>
+                    Calculators
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 13 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2020/08/iStock-1177331131.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">How To Prioritize Debt Payoff Against Your Other Priorities</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 14 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2020/08/iStock-1162957042.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">The Credit Score Moves That Work</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+              <!-- Card 15 -->
+              <a href="#" class="ContentCard">
+                <div class="ContentCard__bookmark">
+                  <button class="BookmarkButton" aria-label="Bookmark">
+                    <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="ContentCard__imageContainer" style="background-image: url('https://cms.financialfinesse.com/rafpress/media/2016/06/6055.jpg?size=modernHubIndexImage2x');"></div>
+                <div class="ContentCard__title">Boost Your Credit Score by Paying Attention to These 5 Things</div>
+                <div class="ContentCard__type">
+                  <span class="ContentTypeTag ContentTypeTag--articles">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="3" rx="1"/><rect x="4" y="10" width="16" height="2" rx="1"/><rect x="4" y="15" width="10" height="2" rx="1"/></svg>
+                    Articles
+                  </span>
+                </div>
+              </a>
+
+            </div><!-- /.ContentRow__content -->
+          </div><!-- /.HorizontalScroller__container -->
+
+          <!-- Scroll-right handle -->
+          <button class="HorizontalScroller__arrow"
+                  aria-label="Scroll right"
+                  onclick="document.getElementById('cardScroller').scrollBy({left: 620, behavior: 'smooth'})">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+
+        </div><!-- /.HorizontalScroller -->
+      </div><!-- /.ContentRow -->
+    </div><!-- /.Home__content -->
+
+  </div><!-- /.content-col -->
+
+  <!-- RIGHT CHAT PANEL -->
+  <div class="chat-col" id="tour-aimee">
+    <div class="chatWindowHeader">
+      <!-- Hamburger / close -->
+      <button class="chatWindowHeader__menuBtn" id="closeChatBtn" aria-label="Close chat">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <!-- Brand (centered) -->
+      <div class="chatWindowHeader__brandContainer">
+        <svg class="chatWindowHeader__brand" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="#00395C"/>
+          <path d="M16 5C10.477 5 6 9.477 6 15s4.477 10 10 10 10-4.477 10-10S21.523 5 16 5z" fill="url(#ag1)"/>
+          <path d="M10 14q3-5 6-5t6 5q-3 4-6 4t-6-4z" fill="rgba(255,255,255,0.18)"/>
+          <path d="M8 18q4 4 8 4t8-4" stroke="rgba(255,255,255,0.25)" stroke-width="1" fill="none"/>
+          <defs>
+            <linearGradient id="ag1" x1="6" y1="5" x2="26" y2="25" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00B4D8"/>
+              <stop offset="0.5" stop-color="#0077A8"/>
+              <stop offset="1" stop-color="#4CAF7D"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="chatWindowHeader__brandName">Aimee</span>
+        <span class="chatWindowHeader__brandBadge">AI</span>
+      </div>
+      <!-- Actions -->
+      <div class="chatWindowHeader__actions">
+        <button class="chatWindowHeader__actionBtn" aria-label="Expand">
+          <svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
+        <button class="chatWindowHeader__actionBtn" aria-label="Minimize">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div class="chatWindow__content">
+      <div class="chatWindow__emptyState">
+        <p class="chatWindow__greeting">Hi, Bri.</p>
+        <p class="chatWindow__greetingSub">What can I help you with today?</p>
+      </div>
+    </div>
+
+    <!-- Input bar -->
+    <div class="chatWindow__inputBar">
+      <div class="chatWindow__inputWrapper">
+        <textarea class="chatWindow__input" placeholder="Ask Aimee anything" rows="1"></textarea>
+        <button class="chatWindow__sendButton" aria-label="Send">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+        </button>
+      </div>
+      <div class="chatWindow__disclaimer">Aimee can get things wrong. Double check answers.</div>
+    </div>
+  </div><!-- /.chat-col -->
+
+</div><!-- /.page-wrapper -->
+
+<!-- ===== FLOATING FAB (Get Started) ===== -->
+<div class="rewardableActivitiesFABContainer">
+  <button class="RewardableActivitiesFAB">
+    <div class="rewardableActivities__header">
+      <span class="rewardableActivities__title">Get Started</span>
+      <span class="rewardableActivities__count">1 / 3</span>
+    </div>
+    <div class="rewardableActivities__progressTrack">
+      <div class="rewardableActivities__progressFill"></div>
+    </div>
+  </button>
+</div>
+
+<!-- ===== FLOATING CHAT ICON BUTTON ===== -->
+<button class="FloatingChatButton" aria-label="Chat with Aimee" id="floatingChatBtn">
+  <img src="https://cms.financialfinesse.com/rafpress/media/2021/03/ff-icon-white.svg" alt="Aimee" style="background: rgb(6,56,83); padding: 8px;" />
+</button>
+
+<!-- ===== RESTART TOUR BUTTON ===== -->
+<button class="RestartTourBtn" id="restartTourBtn" aria-label="Restart tour">
+  <svg class="RestartTourBtn__icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3.5 10a6.5 6.5 0 1 0 1.343-3.964" stroke="#5CD8C2" stroke-width="1.75" stroke-linecap="round"/>
+    <path d="M3.5 4v3.5H7" stroke="#5CD8C2" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  Restart Tour
+</button>
+
+<script>
+  const chatPanel = document.querySelector('.chat-col');
+  const floatingBtn = document.getElementById('floatingChatBtn');
+  const contentCol = document.querySelector('.content-col');
+  const fab = document.querySelector('.rewardableActivitiesFABContainer');
+  const toggleBtn = document.getElementById('closeChatBtn');
+
+  function closeChat() {
+    chatPanel.classList.add('chat-col--hidden');
+    contentCol.classList.add('content-col--expanded');
+    fab.classList.add('rewardableActivitiesFABContainer--expanded');
+    floatingBtn.style.display = 'block';
+  }
+
+  function openChat() {
+    chatPanel.classList.remove('chat-col--hidden');
+    contentCol.classList.remove('content-col--expanded');
+    fab.classList.remove('rewardableActivitiesFABContainer--expanded');
+    floatingBtn.style.display = 'none';
+  }
+
+  toggleBtn.addEventListener('click', closeChat);
+  floatingBtn.addEventListener('click', openChat);
+
+  document.getElementById('restartTourBtn').addEventListener('click', function () {
+    TourOverlay.reset();
+    TourOverlay.start(generateTourSteps(useOnboardingData()));
+  });
+</script>
+
+<script>
+/* =============================================================
+   TourOverlay — self-contained tooltip tour engine
+   No external dependencies. Uses localStorage to run only once.
+
+   Public API:
+     TourOverlay.start(steps)   — launch the tour
+     TourOverlay.reset()        — clear localStorage flag (for testing)
+
+   Step object shape:
+   {
+     targetSelector: string,   // CSS selector for the spotlight target
+     title:          string,   // tooltip heading
+     body:           string,   // tooltip description
+     spotlightPad:   number,   // optional extra padding around target (default 8)
+   }
+============================================================= */
+const TourOverlay = (() => {
+  'use strict';
+
+  const LS_KEY = 'ff_tour_completed';
+  const TOOLTIP_WIDTH = 300;
+  const TOOLTIP_MARGIN = 16;  // gap between spotlight and tooltip
+  const SPOT_PAD = 8;         // default spotlight padding
+
+  let _steps   = [];
+  let _current = 0;
+  let _overlay = null;        // root .tour-overlay div
+  let _svg     = null;        // SVG mask element
+  let _ring    = null;        // spotlight ring div
+  let _tooltip = null;        // tooltip card div
+  let _resizeOb = null;
+
+  // ── Utility ──────────────────────────────────────────────
+
+  function $(sel) { return document.querySelector(sel); }
+
+  function getRect(el) {
+    const r = el.getBoundingClientRect();
+    const pad = 0;
+    return { top: r.top, left: r.left, width: r.width, height: r.height };
+  }
+
+  function clamp(val, min, max) {
+    return Math.min(Math.max(val, min), max);
+  }
+
+  // ── Build DOM ─────────────────────────────────────────────
+
+  function buildOverlay() {
+    const ov = document.createElement('div');
+    ov.className = 'tour-overlay';
+    ov.setAttribute('role', 'dialog');
+    ov.setAttribute('aria-modal', 'true');
+    ov.setAttribute('aria-label', 'Feature tour');
+
+    // SVG mask — covers full viewport, hole is cut by clipPath
+    ov.innerHTML = `
+      <svg class="tour-mask" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <mask id="tour-cutout-mask">
+            <!-- white = show dark overlay; black rect = cut hole -->
+            <rect id="tour-mask-fill" x="0" y="0" width="100%" height="100%" fill="white"/>
+            <rect id="tour-mask-hole" rx="0" ry="0" fill="black"/>
+          </mask>
+        </defs>
+        <rect
+          class="tour-backdrop-hit"
+          x="0" y="0" width="100%" height="100%"
+        />
+        <rect
+          x="0" y="0" width="100%" height="100%"
+          fill="rgba(0,0,0,0.55)"
+          mask="url(#tour-cutout-mask)"
+          pointer-events="none"
+        />
+      </svg>
+      <div class="tour-spotlight-ring" id="tour-ring"></div>
+      <div class="tour-tooltip" id="tour-tooltip" role="document"></div>
+    `;
+
+    document.body.appendChild(ov);
+
+    _overlay = ov;
+    _svg     = ov.querySelector('.tour-mask');
+    _ring    = ov.querySelector('#tour-ring');
+    _tooltip = ov.querySelector('#tour-tooltip');
+
+    // Click on dark backdrop = skip
+    ov.querySelector('.tour-backdrop-hit').addEventListener('click', finish);
+  }
+
+  // ── Spotlight ─────────────────────────────────────────────
+
+  function positionSpotlight(el, pad) {
+    pad = (pad !== undefined ? pad : SPOT_PAD);
+    const r      = el.getBoundingClientRect();
+    const left   = r.left   - pad;
+    const top    = r.top    - pad;
+    const width  = r.width  + pad * 2;
+    const height = r.height + pad * 2;
+    const rx     = Math.min(16, height / 2);
+
+    // Move the SVG hole
+    const hole = _svg.querySelector('#tour-mask-hole');
+    hole.setAttribute('x',      left);
+    hole.setAttribute('y',      top);
+    hole.setAttribute('width',  width);
+    hole.setAttribute('height', height);
+    hole.setAttribute('rx',     rx);
+    hole.setAttribute('ry',     rx);
+
+    // Move the ring
+    _ring.style.cssText = `
+      left:          ${left}px;
+      top:           ${top}px;
+      width:         ${width}px;
+      height:        ${height}px;
+      border-radius: ${rx}px;
+    `;
+  }
+
+  // ── Tooltip placement ─────────────────────────────────────
+  // Prefers: below → above → right → left, whichever fits.
+
+  function positionTooltip(el) {
+    const r       = el.getBoundingClientRect();
+    const vw      = window.innerWidth;
+    const vh      = window.innerHeight;
+    const pad     = SPOT_PAD;
+    const TW      = TOOLTIP_WIDTH;
+    const TM      = TOOLTIP_MARGIN;
+
+    // Measure real tooltip height after render
+    _tooltip.style.visibility = 'hidden';
+    _tooltip.style.left = '-9999px';
+    _tooltip.style.top  = '-9999px';
+    const TH = _tooltip.offsetHeight || 180;
+    _tooltip.style.visibility = '';
+
+    // Candidate positions: below, above, right, left
+    const positions = [
+      {
+        name:  'bottom',
+        arrow: 'top',
+        top:   r.bottom + pad + TM,
+        left:  clamp(r.left, TM, vw - TW - TM),
+        fits:  r.bottom + pad + TM + TH <= vh - TM,
+      },
+      {
+        name:  'top',
+        arrow: 'bottom',
+        top:   r.top - pad - TM - TH,
+        left:  clamp(r.left, TM, vw - TW - TM),
+        fits:  r.top - pad - TM - TH >= TM,
+      },
+      {
+        name:  'right',
+        arrow: 'left',
+        top:   clamp(r.top, TM, vh - TH - TM),
+        left:  r.right + pad + TM,
+        fits:  r.right + pad + TM + TW <= vw - TM,
+      },
+      {
+        name:  'left',
+        arrow: 'right',
+        top:   clamp(r.top, TM, vh - TH - TM),
+        left:  r.left - pad - TM - TW,
+        fits:  r.left - pad - TM - TW >= TM,
+      },
+    ];
+
+    const chosen = positions.find(p => p.fits) || positions[0];
+
+    _tooltip.style.top  = chosen.top  + 'px';
+    _tooltip.style.left = chosen.left + 'px';
+    _tooltip.style.width = TW + 'px';
+    _tooltip.setAttribute('data-arrow', chosen.arrow);
+  }
+
+  // ── Render tooltip content ────────────────────────────────
+
+  function renderTooltip(step, index, total) {
+    const isLast = index === total - 1;
+    const dots   = Array.from({ length: total }, (_, i) =>
+      `<div class="tour-dot${i === index ? ' tour-dot--active' : ''}"></div>`
+    ).join('');
+
+    _tooltip.innerHTML = `
+      <div class="tour-tooltip__header">
+        <span class="tour-tooltip__step">Step ${index + 1} of ${total}</span>
+        <button class="tour-tooltip__skip" id="tour-skip-btn">Skip tour</button>
+      </div>
+      <div class="tour-tooltip__title">${step.title}</div>
+      <div class="tour-tooltip__body">${step.body}</div>
+      <div class="tour-tooltip__dots">${dots}</div>
+      <div class="tour-tooltip__controls">
+        ${index > 0
+          ? `<button class="tour-btn-back" id="tour-back-btn">Back</button>`
+          : ''}
+        <button class="tour-btn-next${isLast ? ' tour-btn-next--finish' : ''}" id="tour-next-btn">
+          ${isLast ? 'Done' : 'Next'}
+        </button>
+      </div>
+    `;
+
+    _tooltip.querySelector('#tour-next-btn').addEventListener('click', () => {
+      isLast ? finish() : goTo(_current + 1);
+    });
+    const backBtn = _tooltip.querySelector('#tour-back-btn');
+    if (backBtn) backBtn.addEventListener('click', () => goTo(_current - 1));
+    _tooltip.querySelector('#tour-skip-btn').addEventListener('click', finish);
+  }
+
+  // ── Step navigation ───────────────────────────────────────
+
+  function goTo(index) {
+    _current = index;
+    const step = _steps[index];
+    if (!step) { finish(); return; }
+
+    const el = document.querySelector(step.targetSelector);
+    if (!el) {
+      // Target not found — skip to next
+      console.warn('[TourOverlay] target not found:', step.targetSelector);
+      goTo(index + 1);
+      return;
+    }
+
+    // Scroll target into view, then position everything
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Small delay lets scroll settle before measuring
+    setTimeout(() => {
+      positionSpotlight(el, step.spotlightPad);
+      renderTooltip(step, index, _steps.length);
+      positionTooltip(el);
+    }, 120);
+  }
+
+  // ── Keyboard support ──────────────────────────────────────
+
+  function onKeyDown(e) {
+    if (e.key === 'ArrowRight' || e.key === 'Enter') {
+      if (_current < _steps.length - 1) goTo(_current + 1); else finish();
+    } else if (e.key === 'ArrowLeft') {
+      if (_current > 0) goTo(_current - 1);
+    } else if (e.key === 'Escape') {
+      finish();
+    }
+  }
+
+  // ── Resize handler ────────────────────────────────────────
+
+  function onResize() {
+    const step = _steps[_current];
+    if (!step) return;
+    const el = document.querySelector(step.targetSelector);
+    if (!el) return;
+    positionSpotlight(el, step.spotlightPad);
+    positionTooltip(el);
+  }
+
+  // ── Start / Finish ────────────────────────────────────────
+
+  function start(steps) {
+    if (!steps || steps.length === 0) return;
+
+    // Already completed — don't show again
+    if (localStorage.getItem(LS_KEY) === 'true') return;
+
+    // Clean up any lingering overlay from a previous run
+    teardown();
+
+    _steps   = steps;
+    _current = 0;
+
+    buildOverlay();
+    goTo(0);
+
+    document.addEventListener('keydown', onKeyDown);
+    window.addEventListener('resize', onResize);
+
+    // Re-measure on any scroll (handles fixed sidebars / panels)
+    window.addEventListener('scroll', onResize, { passive: true });
+  }
+
+  function finish() {
+    localStorage.setItem(LS_KEY, 'true');
+    teardown();
+  }
+
+  function teardown() {
+    if (_overlay) {
+      _overlay.remove();
+      _overlay = _svg = _ring = _tooltip = null;
+    }
+    document.removeEventListener('keydown', onKeyDown);
+    window.removeEventListener('resize', onResize);
+    window.removeEventListener('scroll', onResize);
+    _steps   = [];
+    _current = 0;
+  }
+
+  function reset() {
+    localStorage.removeItem(LS_KEY);
+  }
+
+  return { start, finish, reset };
+})();
+
+// ── Tour step definitions ─────────────────────────────────────────────────
+// ── generateTourSteps(onboardingData) ────────────────────────────────────
+// Returns 4 personalized tooltip step objects for the tour engine.
+// Each step body references real fields from the ff_user_profile schema:
+//   data.goal, data.q1Answer, data.q2Answer, data.profileName, data.aimeeMsg
+// Falls back to generic copy when data is absent (returning / direct nav).
+//
+// Real field names mirror the schema written by completeOnboarding():
+//   goal, q1Label, q1Answer, q2Label, q2Answer, profileName, hubTag, aimeeMsg
+//
+// ── Example: goal='home', q1Answer='Within the next 12 months',
+//            q2Answer='Saving for a down payment'
+// → Priorities body references the down payment hurdle directly.
+// → Action Plan body references the 12-month timeline.
+// → Aimee body uses the goal-specific aimeeMsg verbatim.
+// → Coach body names "buying a home" as the context.
+//
+// ── Example: goal='debt', q1Answer='Credit card debt',
+//            q2Answer='Crisis — I need help immediately'
+// → Priorities body calls out credit card debt + crisis urgency.
+// → Action Plan body references The Debt Battler profile by name.
+// → Aimee body uses the avalanche/snowball aimeeMsg verbatim.
+// → Coach body names "paying off debt" as the context.
+//
+// ── Example: no onboarding data (isFirstVisit=false, goal=null)
+// → All four steps return the original generic fallback copy.
+function generateTourSteps(data) {
+  // Human-readable goal phrases for inline copy
+  const GOAL_PHRASE = {
+    debt:       'paying down your debt',
+    savings:    'building your savings',
+    home:       'buying a home',
+    college:    'saving for college',
+    retirement: 'planning for retirement',
+    wealth:     'growing your wealth',
+    notSure:    'finding the right starting point',
+  };
+
+  // Goal-specific coach conversation context
+  const GOAL_COACH_CONTEXT = {
+    debt:       'paying off debt',
+    savings:    'building an emergency fund or savings plan',
+    home:       'buying a home',
+    college:    'college savings options like 529 plans',
+    retirement: 'retirement income and Social Security timing',
+    wealth:     'investment strategy and wealth building',
+    notSure:    'figuring out the right place to start',
+  };
+
+  const hasProfile = data.isFirstVisit && !!data.goal;
+  const goalPhrase   = GOAL_PHRASE[data.goal]       || 'your financial goals';
+  const coachContext = GOAL_COACH_CONTEXT[data.goal] || goalPhrase;
+
+  // ── Step 1: Priorities ──────────────────────────────────────────────────
+  // References q2Answer (the "biggest hurdle / situation" question) when present.
+  // That answer is the sharpest signal for why certain priorities appear first.
+  let prioritiesBody;
+  if (!hasProfile) {
+    prioritiesBody = 'These are your personalized action items — the most important financial moves for you right now. They update as you make progress.';
+  } else if (data.q2Answer) {
+    prioritiesBody = `Your action items are built around ${goalPhrase}. We've prioritized them based on your situation — you said "${data.q2Answer}" — so the most relevant steps are always first.`;
+  } else {
+    prioritiesBody = `Your action items are built around ${goalPhrase}. Each step is chosen to help you make real progress on what matters most right now.`;
+  }
+
+  // ── Step 2: Action Plan nav ─────────────────────────────────────────────
+  // References profileName (e.g. "The Home Buyer") and q1Answer (the
+  // timeline / life-stage question) — the two answers that shape plan ordering.
+  let actionPlanBody;
+  if (!hasProfile) {
+    actionPlanBody = 'Tap here to see your complete financial action plan — every recommended step, organized by priority.';
+  } else {
+    const planLabel = data.profileName ? `your ${data.profileName} plan` : 'your full plan';
+    actionPlanBody = data.q1Answer
+      ? `See every step in ${planLabel}. You answered "${data.q1Answer}", so your plan is ordered to match your timeline.`
+      : `See every step in ${planLabel} — organized so you always know what to tackle next.`;
+  }
+
+  // ── Step 3: Aimee AI ────────────────────────────────────────────────────
+  // Uses data.aimeeMsg verbatim — it's already goal-specific copy written
+  // in the onboarding GOALS data map (e.g. avalanche/snowball for debt,
+  // homebuying timeline for home). Appends a universal "ask anything" coda.
+  let aimeeBody;
+  if (!hasProfile || !data.aimeeMsg) {
+    aimeeBody = 'Aimee is here whenever you have a question — about your plan, your benefits, or anything money-related. Ask her anything.';
+  } else {
+    aimeeBody = `${data.aimeeMsg} Ask her anything, anytime.`;
+  }
+
+  // ── Step 4: Talk to a Coach ─────────────────────────────────────────────
+  // References goal-specific coaching context so the value prop feels
+  // directly relevant rather than generic.
+  let coachBody;
+  if (!hasProfile) {
+    coachBody = 'Want a human perspective? Certified financial coaches are available Monday – Friday, 9 am – 8 pm ET, at no cost to you.';
+  } else {
+    coachBody = `Have questions about ${coachContext}? A certified financial coach can give you personalized guidance — free, and available Monday – Friday, 9 am – 8 pm ET.`;
+  }
+
+  return [
+    {
+      targetSelector: '#tour-priorities',
+      title:          'Your priorities, today',
+      body:           prioritiesBody,
+      spotlightPad:   10,
+    },
+    {
+      targetSelector: '#tour-action-plan-nav',
+      title:          'Your full Action Plan',
+      body:           actionPlanBody,
+      spotlightPad:   6,
+    },
+    {
+      targetSelector: '#tour-aimee',
+      title:          'Meet Aimee, your AI coach',
+      body:           aimeeBody,
+      spotlightPad:   0,
+    },
+    {
+      targetSelector: '#tour-coach',
+      title:          'Talk to a real coach',
+      body:           coachBody,
+      spotlightPad:   10,
+    },
+  ];
+}
+
+// ── useOnboardingData() ───────────────────────────────────────────────────
+// Reads the ff_user_profile key written by the onboarding app.
+// Returns a profile object on first visit, or a returning-user sentinel.
+// Never throws — all failure modes return a safe default.
+//
+// Return shape:
+// {
+//   isFirstVisit:  boolean,   // true = arrived from onboarding
+//   isReturning:   boolean,   // true = profile exists but already seen
+//   goal:          string|null,
+//   q1Label:       string|null,
+//   q1Answer:      string|null,
+//   q2Label:       string|null,
+//   q2Answer:      string|null,
+//   profileName:   string|null,  // e.g. "The Home Buyer"
+//   hubTag:        string|null,  // e.g. "Personalized for your homebuying timeline"
+//   aimeeMsg:      string|null,  // Aimee's opening line
+//   completedAt:   number|null,  // Unix ms timestamp from onboarding
+// }
+function useOnboardingData() {
+  const PROFILE_KEY  = 'ff_user_profile';
+  const SEEN_KEY     = 'ff_hub_visited';
+
+  const empty = {
+    isFirstVisit: false,
+    isReturning:  false,
+    goal:         null,
+    q1Label:      null,
+    q1Answer:     null,
+    q2Label:      null,
+    q2Answer:     null,
+    profileName:  null,
+    hubTag:       null,
+    aimeeMsg:     null,
+    completedAt:  null,
+  };
+
+  let raw = null;
+  try {
+    raw = localStorage.getItem(PROFILE_KEY);
+  } catch (e) {
+    // localStorage blocked (e.g. privacy mode) — treat as no data
+    console.warn('[Hub] localStorage unavailable:', e);
+    return empty;
+  }
+
+  // No onboarding data at all — anonymous / direct navigation
+  if (!raw) return empty;
+
+  let profile = null;
+  try {
+    profile = JSON.parse(raw);
+  } catch (e) {
+    // Malformed JSON — clear it and treat as no data
+    console.warn('[Hub] Malformed ff_user_profile — clearing:', e);
+    try { localStorage.removeItem(PROFILE_KEY); } catch (_) {}
+    return empty;
+  }
+
+  // Validate minimum required shape
+  if (!profile || typeof profile !== 'object' || !profile.goal) {
+    try { localStorage.removeItem(PROFILE_KEY); } catch (_) {}
+    return empty;
+  }
+
+  // Check if user has already seen the hub with this profile
+  const alreadySeen = localStorage.getItem(SEEN_KEY) === 'true';
+
+  // Mark as seen going forward
+  try { localStorage.setItem(SEEN_KEY, 'true'); } catch (_) {}
+
+  return {
+    isFirstVisit: !alreadySeen,
+    isReturning:  alreadySeen,
+    goal:         profile.goal        || null,
+    q1Label:      profile.q1Label     || null,
+    q1Answer:     profile.q1Answer    || null,
+    q2Label:      profile.q2Label     || null,
+    q2Answer:     profile.q2Answer    || null,
+    profileName:  profile.profileName || null,
+    hubTag:       profile.hubTag      || null,
+    aimeeMsg:     profile.aimeeMsg    || null,
+    completedAt:  profile.completedAt || null,
+  };
+}
+
+// ── Apply onboarding data to the hub UI ───────────────────────────────────
+function applyOnboardingData(data) {
+  // ── Greeting ──────────────────────────────────────────────────────────
+  // Swap "Welcome back, Bri!" for a first-visit message when we have a profile.
+  // Leave it unchanged for returning users (it reads "Welcome back" correctly).
+  const titleEl = document.querySelector('.Home__actionPlanTitle');
+  if (titleEl && data.isFirstVisit && data.profileName) {
+    titleEl.textContent = `Welcome! Here's your ${data.profileName} plan.`;
+  }
+
+  // ── Priorities sub-heading ─────────────────────────────────────────────
+  // Swap the generic "Here are your priorities, today" for a goal-aware label.
+  const subtitleEl = document.querySelector('.Home__actionItemsTitle');
+  if (subtitleEl && data.hubTag) {
+    subtitleEl.textContent = data.hubTag;
+  }
+
+  // ── Aimee action item ─────────────────────────────────────────────────
+  // Personalize "Ask Aimee AI about..." with the topic from onboarding.
+  // Priority: q1Answer (specific answer) → q1Label → goal phrase → generic fallback.
+  const aiimeeItemEl = document.getElementById('action-item-aimee-title');
+  if (aiimeeItemEl) {
+    const topic = data.q1Answer || data.q1Label || null;
+    if (topic) {
+      aiimeeItemEl.textContent = `Ask Aimee AI about ${topic.toLowerCase()}`;
+    }
+  }
+
+  // ── Aimee greeting ────────────────────────────────────────────────────
+  // Use the goal-specific opening message from the onboarding data map.
+  const aimeeGreetEl  = document.querySelector('.chatWindow__greeting');
+  const aimeeSubEl    = document.querySelector('.chatWindow__greetingSub');
+  if (data.aimeeMsg) {
+    if (aimeeGreetEl) aimeeGreetEl.textContent = 'Hi there!';
+    if (aimeeSubEl)   aimeeSubEl.textContent   = data.aimeeMsg;
+  }
+}
+
+// ── Auto-launch on page load ──────────────────────────────────────────────
+// Sequence:
+//   1. Read onboarding profile (useOnboardingData)
+//   2. Personalize dashboard UI (applyOnboardingData)
+//   3. Build personalized tour steps (generateTourSteps)
+//   4. Gate: only launch tour if this is first visit AND data is present,
+//            OR if there's no onboarding data at all (generic copy fallback).
+//            Never show the tour with empty/generic copy to a user who
+//            completed onboarding — wait until their data is readable.
+//   5. Mark tour as seen via TourOverlay's own localStorage key (ff_tour_completed)
+//      so it never runs twice.
+document.addEventListener('DOMContentLoaded', () => {
+  const onboardingData = useOnboardingData();
+
+  // Apply UI personalization regardless of tour state
+  applyOnboardingData(onboardingData);
+
+  // Build steps from real data (or generic fallback if no profile)
+  const steps = generateTourSteps(onboardingData);
+
+  // Gate logic:
+  // - isFirstVisit=true  + has goal → came straight from onboarding, data ready → show personalized tour
+  // - isFirstVisit=false + has goal → returning user who has profile → skip tour (already seen)
+  // - goal=null (no profile at all) → direct/anonymous navigation → show generic tour as normal
+  const hasOnboardingProfile = !!onboardingData.goal;
+  const shouldShowTour =
+    !hasOnboardingProfile ||          // no profile: show generic tour
+    onboardingData.isFirstVisit;      // has profile + first visit: show personalized tour
+
+  if (shouldShowTour) {
+    TourOverlay.start(steps);
+  }
+});
+
+// ── DEV RESET UTILITY ────────────────────────────────────────────────────
+// Exposed on window.DevReset. Never referenced by production code paths.
+// Usage from the browser console:
+//
+//   DevReset.all()            — wipe everything, reload as a brand-new user
+//   DevReset.tourOnly()       — clear tour flag only, keep onboarding profile
+//   DevReset.onboardingOnly() — clear profile + visited flag, keep tour flag
+//   DevReset.inspect()        — print current localStorage values without changing anything
+//   DevReset.seed(goal)       — inject a fake profile for a given goal so you
+//                               can test the hub without running onboarding.
+//                               goal: 'debt'|'savings'|'home'|'college'|'retirement'|'wealth'|'notSure'
+//
+// Example: DevReset.seed('debt') then reload → hub behaves as if the user
+// completed debt onboarding as a first-time visitor.
+//
+// ⚠ DEV ONLY — remove this block (or guard with an env flag) before shipping.
+window.DevReset = (() => {
+  'use strict';
+
+  const KEYS = {
+    tour:      'ff_tour_completed',
+    profile:   'ff_user_profile',
+    visited:   'ff_hub_visited',
+  };
+
+  // Seed data matching the real ff_user_profile schema written by completeOnboarding().
+  // Values mirror what the onboarding GOALS map would produce for each goal.
+  const SEED_PROFILES = {
+    debt: {
+      goal: 'debt', profileName: 'The Debt Battler',
+      hubTag: 'Focused on your path to debt freedom',
+      q1Label: 'Which type of debt is weighing on you most?',
+      q1Answer: 'Credit card debt',
+      q2Label: 'How would you describe your situation right now?',
+      q2Answer: 'Struggling but managing',
+      aimeeMsg: 'I can help you map out a debt payoff plan. Want to start with the avalanche or snowball method?',
+      completedAt: Date.now(), isFirstVisit: true,
+    },
+    savings: {
+      goal: 'savings', profileName: 'The Fresh Start',
+      hubTag: 'Built around your savings goals',
+      q1Label: 'What life stage best describes you?',
+      q1Answer: 'Early career (20s)',
+      q2Label: 'What feels most urgent right now?',
+      q2Answer: 'I have no emergency fund at all',
+      aimeeMsg: "Let's build your first emergency fund together. Even $500 changes everything. Where would you like to start?",
+      completedAt: Date.now(), isFirstVisit: true,
+    },
+    home: {
+      goal: 'home', profileName: 'The Home Buyer',
+      hubTag: 'Personalized for your homebuying timeline',
+      q1Label: 'When are you thinking of buying?',
+      q1Answer: 'Within the next 12 months',
+      q2Label: "What feels like your biggest hurdle?",
+      q2Answer: 'Saving for a down payment',
+      aimeeMsg: 'Ready to talk through your homebuying plan? I can walk you through what to tackle first based on your timeline.',
+      completedAt: Date.now(), isFirstVisit: true,
+    },
+    college: {
+      goal: 'college', profileName: 'The New Parent',
+      hubTag: 'Tailored to your college savings timeline',
+      q1Label: 'How old are your children?',
+      q1Answer: 'Under 5 — just getting started',
+      q2Label: 'How much have you set aside so far?',
+      q2Answer: 'Nothing yet — starting from zero',
+      aimeeMsg: "A 529 plan might be your best friend here. Want me to walk you through how they work and which options fit your timeline?",
+      completedAt: Date.now(), isFirstVisit: true,
+    },
+    retirement: {
+      goal: 'retirement', profileName: 'The Pre-Retiree',
+      hubTag: 'Built around your retirement timeline',
+      q1Label: 'How many years until you plan to retire?',
+      q1Answer: '5–10 years',
+      q2Label: 'What concerns you most about retirement?',
+      q2Answer: "Making sure I don't outlive my money",
+      aimeeMsg: "Let's figure out your retirement number together. I can help you run Social Security timing scenarios and income projections.",
+      completedAt: Date.now(), isFirstVisit: true,
+    },
+    wealth: {
+      goal: 'wealth', profileName: 'The Wealth Builder',
+      hubTag: 'Focused on growing what you\'ve built',
+      q1Label: 'Where is most of your money right now?',
+      q1Answer: 'Mostly in a 401(k) or IRA',
+      q2Label: 'What is your primary wealth-building goal?',
+      q2Answer: 'Build a taxable brokerage portfolio',
+      aimeeMsg: "You've built great financial habits. Let's talk about where your next investment dollar will have the most impact.",
+      completedAt: Date.now(), isFirstVisit: true,
+    },
+    notSure: {
+      goal: 'notSure', profileName: 'The Explorer',
+      hubTag: 'Built around getting you started right',
+      q1Label: null, q1Answer: null,
+      q2Label: null, q2Answer: null,
+      aimeeMsg: "Not knowing where to start is actually really common. Let's figure out the best first move together.",
+      completedAt: Date.now(), isFirstVisit: true,
+    },
+  };
+
+  function _clear(...keys) {
+    keys.forEach(k => { try { localStorage.removeItem(k); } catch(e) {} });
+  }
+
+  function _set(key, value) {
+    try { localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value)); }
+    catch(e) { console.warn('[DevReset] localStorage write failed:', e); }
+  }
+
+  function _banner(msg) {
+    console.log('%c[DevReset] ' + msg, 'background:#063853;color:#5CD8C2;font-weight:700;padding:2px 6px;border-radius:3px;');
+  }
+
+  const api = {
+    // Wipe all three keys → full new-user experience on reload
+    all() {
+      _clear(KEYS.tour, KEYS.profile, KEYS.visited);
+      _banner('Cleared: tour + profile + visited → reloading as brand-new user');
+      location.reload();
+    },
+
+    // Clear only the tour flag → profile survives, tour replays on next load
+    tourOnly() {
+      _clear(KEYS.tour);
+      _banner('Cleared: ff_tour_completed only → tour will replay on next load');
+      location.reload();
+    },
+
+    // Clear profile + visited → hub reverts to generic copy but tour stays suppressed
+    onboardingOnly() {
+      _clear(KEYS.profile, KEYS.visited);
+      _banner('Cleared: ff_user_profile + ff_hub_visited → generic hub on next load, tour suppressed');
+      location.reload();
+    },
+
+    // Print current state without modifying anything
+    inspect() {
+      const state = {};
+      Object.entries(KEYS).forEach(([label, key]) => {
+        const raw = localStorage.getItem(key);
+        try { state[label] = raw !== null ? JSON.parse(raw) : '(not set)'; }
+        catch(e) { state[label] = raw; }
+      });
+      _banner('Current localStorage state (no changes made):');
+      console.table(state);
+      return state;
+    },
+
+    // Inject a fake first-visit profile for a given goal, clear tour + visited,
+    // then reload → hub behaves as if user just completed that onboarding path.
+    seed(goal) {
+      const profile = SEED_PROFILES[goal];
+      if (!profile) {
+        console.warn('[DevReset] Unknown goal "' + goal + '". Valid options:', Object.keys(SEED_PROFILES).join(', '));
+        return;
+      }
+      _clear(KEYS.tour, KEYS.visited);
+      _set(KEYS.profile, profile);
+      _banner('Seeded "' + goal + '" profile → reloading as first-time ' + profile.profileName);
+      location.reload();
+    },
+  };
+
+  // Print usage hint on every hub load (dev mode reminder)
+  console.log('%c[DevReset] available. Run DevReset.inspect() to see current state, DevReset.all() to reset, DevReset.seed(goal) to test a path.', 'color:#928B9F;font-size:11px;');
+
+  return api;
+})();
+</script>
+
+</body>
+</html>
+                                                                                                                                  
